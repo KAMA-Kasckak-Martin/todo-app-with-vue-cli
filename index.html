@@ -8,6 +8,29 @@
     <title>Document</title>
   </head>
   <body>
+    <div id="app">
+      <div class="container">
+        <h1>Todo List</h1>
+
+        <div v-if="!isEditing">
+          <input type="text" v-model="todo" />
+          <input type="submit" value="add" @click="storeTodo" />
+        </div>
+        <div v-else>
+          <input type="text" v-model="todo" />
+          <input type="submit" value="update" @click="updateTodo" />
+        </div>
+
+        <ol>
+          <li v-for="(todo, index) in todos">
+            <input type="checkbox" v-model="todo.done" />
+            {{todo}}
+            <button @click="editTodo(index,todo)">Edit</button>
+            <button @click="deleteTodo(index)">Delete</button>
+          </li>
+        </ol>
+      </div>
+    </div>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="script.js"></script>
   </body>
